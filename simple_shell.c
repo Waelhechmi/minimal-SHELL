@@ -30,7 +30,10 @@ char *builtin_commands[] = {
     "pwd"
 };
 
-// Fonctions correspondantes aux commandes intégrées
+/**
+ * @brief tableau de pointeurs vers les fonctions des commandes intégrées
+ * 
+ */
 int (*builtin_functions[]) (char **) = {
     &shell_cd,
     NULL, // exit est géré séparément
@@ -80,6 +83,10 @@ int main() {
 }
 
 void display_prompt() {
+    
+ char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    printf("%s", cwd);
     printf(PROMPT);
     fflush(stdout);
 }
@@ -117,14 +124,14 @@ char **parse_input(char *input) {
     char *token;
     int position = 0;
     
-    token = strtok(input, " ");
+    token = strtok(input, " ");//devide the input into tokens based on space
     while (token != NULL && position < MAX_ARGS - 1) {
         args[position] = token;
         position++;
-        token = strtok(NULL, " ");
+        token = strtok(NULL, " ");//get the next token
     }
     
-    args[position] = NULL;
+    args[position] = NULL;//Les tableaux d’arguments en C (argv dans execvp) doivent se terminer par un pointeur NULL pour indiquer la fin.
     return args;
 }
 
@@ -137,8 +144,8 @@ int execute_command(char **args) {
             }
         }
     }
-    
-    // Pour les commandes externes
+    /*
+    // for external commands
     pid_t pid = fork();
     
     if (pid == 0) {
@@ -155,7 +162,7 @@ int execute_command(char **args) {
         int status;
         waitpid(pid, &status, 0);
     }
-    
+    */
     return 1;
 }
 
