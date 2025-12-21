@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/my_shell.dir/shellc.c.o -o my_shell 

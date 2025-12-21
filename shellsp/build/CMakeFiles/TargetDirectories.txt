@@ -1,0 +1,3 @@
+/home/wael/Desktop/shellsp/build/CMakeFiles/my_shell.dir
+/home/wael/Desktop/shellsp/build/CMakeFiles/edit_cache.dir
+/home/wael/Desktop/shellsp/build/CMakeFiles/rebuild_cache.dir
